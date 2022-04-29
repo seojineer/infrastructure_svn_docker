@@ -1,0 +1,23 @@
+version: "3.9"
+services:
+  svn-server:
+    image: elleflorio/svn-server
+    container_name: 'svn-server'
+    ports:
+      - "7443:80"
+      - "3690:3690"
+    volumes:
+      - ./svn-mnt:/home/svn
+    working_dir: /home/svn
+    #networks:
+      #- my_net
+    stdin_open: true # docker run -i
+    tty: true        # docker run -t
+    #privileged: true
+
+#networks:
+  #my_net:
+    #external: true
+#volumes:
+  #svn-mnt:
+    #external: true

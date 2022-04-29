@@ -1,0 +1,25 @@
+This repository is about running SVN as docker container.
+
+1. Run svn docker
+$ docker-compose up -d
+
+2. Add username and password to access http
+docker exec -t svn-server htpasswd -b /etc/subversion/passwd svnadmin <password>
+
+3. Create repository
+docker exec -it svn-server svnadmin create test_repo
+
+4. Modify setting
+Modify /home/svn/test_repo/conf/svnserve.conf file inside the container.
+
+Example:
+anon-access = read
+auth-access = write
+password-db = passwd
+realm = My First Repository
+
+5. passwd setting
+/home/svn/test_repo/conf/passwd
+test = test1234
+
+
